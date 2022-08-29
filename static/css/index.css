@@ -1,6 +1,15 @@
+.options {
+  padding-top: 0px;
+}
+
+.parent {
+  white-space: pre-wrap;
+}
+
 .wrapper{
+  white-space: pre-wrap;
   position: relative;
-  top: 50%;
+  top: 80%;
   left: 50%;
   transform: translate(-50%, -50%);
   margin: 5px;
@@ -9,9 +18,7 @@
 }
 
 .wrapper a{
-  display: inline-block;
-  /*width: 200px;
-  height: 40px;*/
+  display: inline-flex;
   line-height: 40px;
   font-size: 18px;
   font-family: sans-serif;

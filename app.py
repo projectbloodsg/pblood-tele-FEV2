@@ -18,11 +18,14 @@ def getFirst():
     return response.json()
 
 def getMessage(id): #get message based on id
-    response = requests.get("{base_url}/messages/id/{Id}".format(base_url=BASE_URL, Id=id))
-    if response.status_code != 200:
-        print("Result not found!")
+    if True in [char.isdigit() for char in id]:
+        response = requests.get("{base_url}/messages/id/{Id}".format(base_url=BASE_URL, Id=id))
+        if response.status_code != 200:
+            print("Result not found!")
 
-    return response.json()
+        return response.json()
+    else:
+        return None
     
 def getChild(id):
     response = requests.get("{base_url}/messages/child/{childId}".format(base_url=BASE_URL, childId=id))
