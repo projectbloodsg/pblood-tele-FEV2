@@ -1,3 +1,20 @@
+.create-child-message{
+  position: relative;
+  margin: 5px;
+  padding: 50px;
+}
+
+.button{
+  position: absolute;
+}
+button:hover {
+  box-shadow: 2px 2px 3px ;
+}
+
+button:active {
+  box-shadow: 1px 1px 3px ;
+}
+
 .options {
   padding-top: 0px;
 }
@@ -18,7 +35,8 @@
 }
 
 .wrapper a{
-  display: inline-flex;
+  
+  display: contents;
   line-height: 40px;
   font-size: 18px;
   font-family: sans-serif;
@@ -26,7 +44,7 @@
   color: #333;
   border: 2px solid #333;
   letter-spacing: 2px;
-  text-align: start;
+  text-align: center;
   position: relative;
   transition: all .35s;
 }
@@ -37,7 +55,7 @@
 }
 
 .wrapper a:after{
-  position: absolute;
+  position: fixed;
   content: "";
   top: 0;
   left: 0;
@@ -48,9 +66,10 @@
 }
 
 .wrapper a:hover{
-  color: #fff;
+  color: rgb(165, 165, 165);
+  opacity: 10%;
 }
 
 .wrapper a:hover:after{
-  width: 100%;
+  width: 20%;
 }

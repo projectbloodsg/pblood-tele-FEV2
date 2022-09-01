@@ -10,22 +10,36 @@
 
 {% block main %}
 <div class="container">
-    <div class = "parent">
-        {{ parent.content }}
+    <div class = "parent" >
+        <span id = "edit-parent">{{ parent.content }}</span>
     </div>
+
+    <button type="submit" onclick="start_editing(this,'parent')" id= "edit-button-parent">Edit</button>
+    <button type="submit" onclick="end_editing(this,'parent', '{{ parent.message_id|string }}')" id=end-editing-parent hidden = true>Done</button>
+    <button type="submit" onclick="start_child_message()" id= "add-new-child">Add new child message</button> <!-- for adding new child message -->
+    <div id = "create-child-message" hidden = true>
+        <label for="freeform">New child message:</label>
+        <br>
+        <textarea id="freeform" name="freeform" rows="10" cols="50">Enter text here...</textarea>
+        <button type="submit" onclick="submit_child_message('{{ parent.message_id }}')" id= "add-new-child">Done</button>
+    </div>
+    
     <div class="row">
         <div class="options">
             {% set count = namespace(value=0) %}
             {% for child in children %}
-            
-            <div class="col wrapper">
-                <a href="/{{ child.message_id }}">
-                    {% set edit = "edit-" + count.value|string %}
-                    <span id ={{ edit }}>{{ child.content }}</span>
-                </a>
-                <button type="submit" onclick="start_editing(this,{{ count.value }})" id="edit-button">Edit</button>
-                <button type="submit" onclick="end_editing(this,{{ count.value }})" id="end-editing">Done</button>
-            </div> 
+                {% set col_wrapper_number = "col wrapper " + count.value|string %}
+                <div class="col wrapper" id = "{{ col_wrapper_number }}">
+                    <a href="/{{ child.message_id }}">
+                        {% set edit = "edit-" + count.value|string %}
+                        <span id ={{ edit }}>{{ child.content }}</span>
+                    </a>
+                    {% set edit_button = "edit-button-" + count.value|string %}
+                    {% set end_editing = "end-editing-" + count.value|string %}
+                    <button type="submit" onclick="start_editing(this,{{ count.value }})" id= {{ edit_button }}>Edit</button>
+                    <button type="submit" onclick="end_editing(this,{{ count.value }}, '{{ child.message_id|string }}')" id={{ end_editing }} hidden = true>Done</button>
+                    <button onclick="delete_message_confirm({{ count.value }}, '{{ child.message_id|string }}')">Delete</button>
+                </div> 
             {% set count.value = count.value + 1 %}
             {% endfor %}
         </div>
