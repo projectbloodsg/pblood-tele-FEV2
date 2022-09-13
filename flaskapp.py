@@ -114,4 +114,6 @@ def render_new_parent(id):
             ic(deleteMessage(from_js['id']))
 
         return redirect(request.url)
-        
+       
+if __name__ == '__main__':
+         app.run(debug= True)
